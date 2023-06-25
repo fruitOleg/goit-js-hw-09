@@ -1,12 +1,14 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 const refs = {
   firstDelay: document.querySelector('#delay'),
   step: document.querySelector('#step'),
   amount: document.querySelector('#amount'),
   createBtn: document.querySelector('.createBtn'),
-  form: document.querySelector('.form'),
+  form: document.querySelector('form'),
 };
 
-refs.form.addEventListener('submit', onFormSubmit());
+refs.form.addEventListener('submit', onFormSubmit);
 
 function createPromise(position, delay) {
   const obj = { position, delay };
@@ -21,18 +23,18 @@ function createPromise(position, delay) {
         // Reject
         reject(obj);
       }
-    }, 2000);
+    }, delay);
   });
 }
 
 function onFormSubmit(evt) {
-  evt.prevent.default();
+  evt.preventDefault();
 
   const amountValue = parseInt(refs.amount.value);
   const delayStep = Number(refs.step.value);
   let firstDelayValue = Number(refs.firstDelay.value);
 
-  for (let i = amountValue; i <= amountValue; i += 1) {
+  for (let i = 1; i <= amountValue; i += 1) {
     createPromise(i, firstDelayValue)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
