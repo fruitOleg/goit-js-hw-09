@@ -1,9 +1,12 @@
 const refs = {
-  delay: document.querySelector('#delay'),
+  firstDelay: document.querySelector('#delay'),
   step: document.querySelector('#step'),
   amount: document.querySelector('#amount'),
   createBtn: document.querySelector('.createBtn'),
+  form: document.querySelector('.form'),
 };
+
+refs.form.addEventListener('submit', onFormSubmit());
 
 function createPromise(position, delay) {
   const obj = { position, delay };
@@ -22,10 +25,21 @@ function createPromise(position, delay) {
   });
 }
 
-createPromise(2, 1500)
-  .then(({ position, delay }) => {
-    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-  })
-  .catch(({ position, delay }) => {
-    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-  });
+function onFormSubmit(evt) {
+  evt.prevent.default();
+
+  const amount = parseInt(refs.amount.value);
+  const delayStep = Number(refs.step.value);
+  let fistDelay = Number(refs.firstDelay.value);
+
+  for (let i = amount.value; i <= amount; i += 1) {
+    createPromise(i, fistDelay)
+      .then(({ position, delay }) => {
+        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+      })
+      .catch(({ position, delay }) => {
+        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+      });
+    fistDelay += delayStep;
+  }
+}
