@@ -28,18 +28,18 @@ function createPromise(position, delay) {
 function onFormSubmit(evt) {
   evt.prevent.default();
 
-  const amount = parseInt(refs.amount.value);
+  const amountValue = parseInt(refs.amount.value);
   const delayStep = Number(refs.step.value);
-  let fistDelay = Number(refs.firstDelay.value);
+  let firstDelayValue = Number(refs.firstDelay.value);
 
-  for (let i = amount.value; i <= amount; i += 1) {
-    createPromise(i, fistDelay)
+  for (let i = amountValue; i <= amountValue; i += 1) {
+    createPromise(i, firstDelayValue)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
-    fistDelay += delayStep;
+    firstDelayValue += delayStep;
   }
 }
