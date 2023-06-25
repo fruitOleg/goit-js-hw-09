@@ -1,2 +1,0 @@
-document.querySelector("#delay"),document.querySelector("#step"),document.querySelector("#amount"),document.querySelector(".createBtn");(function(e,o){const t={position:e,delay:o},n=Math.random()>.3;return new Promise(((e,o)=>{setTimeout((()=>{n?e(t):o(t)}),2e3)}))})(2,1500).then((({position:e,delay:o})=>{console.log(`✅ Fulfilled promise ${e} in ${o}ms`)})).catch((({position:e,delay:o})=>{console.log(`❌ Rejected promise ${e} in ${o}ms`)}));
-//# sourceMappingURL=03-promises.0d48e1cf.js.map
