@@ -1,0 +1,39 @@
+/* Стилі для таймера */
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.field {
+  text-align: center;
+  margin: 0 10px;
+}
+
+.value {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.label {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Стилі для кнопки "Start" */
+button[data-start] {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #337ab7;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[data-start]:hover {
+  background-color: #23527c;
+}
